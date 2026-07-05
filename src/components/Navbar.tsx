@@ -12,6 +12,7 @@ export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDrop, setOpenDrop]     = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [logoError, setLogoError]   = useState(false);
   const closeTimer                  = React.useRef<ReturnType<typeof setTimeout> | null>(null);
   const location                    = useLocation();
@@ -32,7 +33,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => { setMobileOpen(false); setOpenDrop(null); }, [location]);
+  useEffect(() => { setMobileOpen(false); setOpenDrop(null); setMobileExpanded(null); }, [location]);
 
   const transparent = isHome && !scrolled;
 
@@ -68,7 +69,7 @@ export default function Navbar() {
                 alt="Prokinesia"
                 onError={() => setLogoError(true)}
                 style={{
-                  height: 90,
+                  height: 40,
                   width: 'auto',
                   objectFit: 'contain',
                   filter: 'none',
@@ -184,10 +185,57 @@ export default function Navbar() {
         {mobileOpen && (
           <div style={{ background: '#fff', borderTop: '1px solid var(--border)', padding: '16px 20px 24px' }}>
             {NAV.links.map(link => (
-              <Link key={link.label} to={link.path} style={{
-                display: 'block', padding: '13px 0', fontSize: 15, fontWeight: 500,
-                color: 'var(--charcoal)', borderBottom: '1px solid var(--border)',
-              }}>{link.label}</Link>
+              <div key={link.label} style={{ borderBottom: '1px solid var(--border)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <Link to={link.path} style={{
+                    display: 'block', padding: '13px 0', fontSize: 15, fontWeight: 500,
+                    color: 'var(--charcoal)', flex: 1,
+                  }}>{link.label}</Link>
+                  {link.hasDropdown && (
+                    <button
+                      type="button"
+                      onClick={() => setMobileExpanded(v => (v === link.label ? null : link.label))}
+                      style={{ background: 'transparent', border: 'none', color: 'var(--mid)', padding: '13px 4px' }}
+                      aria-label={`Toggle ${link.label} submenu`}
+                    >
+                      <ChevronDown size={16} style={{ transition: 'transform 0.2s', transform: mobileExpanded === link.label ? 'rotate(180deg)' : 'rotate(0)' }} />
+                    </button>
+                  )}
+                </div>
+
+                {mobileExpanded === link.label && link.label === 'Services' && (
+                  <div style={{ padding: '4px 0 14px 16px' }}>
+                    {servicesByCategory.map(group => (
+                      <div key={group.category} style={{ marginBottom: 12 }}>
+                        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--sage)', marginBottom: 6 }}>
+                          {group.category}
+                        </div>
+                        {group.items.map(s => (
+                          <Link key={s.id} to={`/services/${s.id}`} style={{ display: 'block', padding: '6px 0', fontSize: 13, color: 'var(--mid)' }}>
+                            {s.title}
+                          </Link>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {mobileExpanded === link.label && link.label === 'Our Team' && (
+                  <div style={{ padding: '4px 0 14px 16px' }}>
+                    {['Our Founders', 'Clinical Team'].map(item => (
+                      <Link key={item} to="/team" style={{ display: 'block', padding: '6px 0', fontSize: 13, color: 'var(--mid)' }}>{item}</Link>
+                    ))}
+                  </div>
+                )}
+
+                {mobileExpanded === link.label && link.label === 'Academy' && (
+                  <div style={{ padding: '4px 0 14px 16px' }}>
+                    {['Clinical Training Program', 'Certifications', 'Workshops'].map(item => (
+                      <Link key={item} to="/academy" style={{ display: 'block', padding: '6px 0', fontSize: 13, color: 'var(--mid)' }}>{item}</Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
             <a href="tel:+918130211828" className="btn-primary" style={{ marginTop: 20, width: '100%', justifyContent: 'center' }}>
               <Phone size={16} /> Book Appointment — +91 81302 11828

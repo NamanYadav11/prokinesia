@@ -21,7 +21,7 @@ export default function ServiceDetailPage() {
       </section>
       <section style={{ padding: '72px 0', background: '#fff' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start' }}>
+          <div className="service-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start' }}>
             <div>
               <h2 className="serif" style={{ fontSize: 28, color: 'var(--teal)', marginBottom: 20 }}>What is {service.title}?</h2>
               <p style={{ fontSize: 15, color: 'var(--mid)', lineHeight: 1.75, marginBottom: 32 }}>{service.desc}</p>
@@ -37,21 +37,28 @@ export default function ServiceDetailPage() {
                   </ul>
                 </>
               )}
-              <div style={{ marginTop: 36, display: 'flex', gap: 14 }}>
+              <div style={{ marginTop: 36, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
                 <Link to="/appointment" className="btn-primary">Book Appointment</Link>
                 <a href="tel:+918130211828" className="btn-secondary"><Phone size={15}/> Call Us</a>
               </div>
             </div>
             {service.treatmentImage ? (
-              <img src={service.treatmentImage} alt={service.title} style={{ width: '100%', borderRadius: 'var(--radius-xl)', objectFit: 'cover', height: 440 }} />
+              <img src={service.treatmentImage} alt={service.title} className="service-image" style={{ width: '100%', borderRadius: 'var(--radius-xl)', objectFit: 'cover', height: 440 }} />
             ) : (
-              <div style={{ width: '100%', height: 440, borderRadius: 'var(--radius-xl)', background: 'var(--teal-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div className="service-image" style={{ width: '100%', height: 440, borderRadius: 'var(--radius-xl)', background: 'var(--teal-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <span className="serif" style={{ fontSize: 32, color: 'var(--sage)' }}>{service.title.charAt(0)}</span>
               </div>
             )}
           </div>
         </div>
       </section>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .service-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .service-image { height: 280px !important; }
+        }
+      `}</style>
     </div>
   );
 }

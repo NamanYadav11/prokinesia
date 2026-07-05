@@ -73,7 +73,7 @@ export default function BlogsPage() {
           {error && (
             <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: 32 }}>{error}</p>
           )}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 28 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 28 }}>
             {loading
               ? [1, 2, 3].map(i => <SkeletonCard key={i} />)
               : posts.map((post, i) => (

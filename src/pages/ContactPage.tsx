@@ -50,7 +50,7 @@ export default function ContactPage() {
 
       <section style={{ padding: '72px 0', background: '#fff' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64 }}>
+          <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64 }}>
 
             <div>
               <h2 className="serif" style={{ fontSize: 28, color: 'var(--teal)', marginBottom: 32 }}>Contact Information</h2>
@@ -81,7 +81,7 @@ export default function ContactPage() {
               ))}
             </div>
 
-            <div style={{ background: 'var(--warm-white)', borderRadius: 'var(--radius-xl)', padding: '40px' }}>
+            <div className="contact-form-card" style={{ background: 'var(--warm-white)', borderRadius: 'var(--radius-xl)', padding: '40px' }}>
               <h2 className="serif" style={{ fontSize: 26, color: 'var(--teal)', marginBottom: 28 }}>Send Your Message</h2>
 
               {status === 'success' ? (
@@ -134,6 +134,15 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .contact-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+        }
+        @media (max-width: 480px) {
+          .contact-form-card { padding: 24px !important; }
+        }
+      `}</style>
     </div>
   );
 }

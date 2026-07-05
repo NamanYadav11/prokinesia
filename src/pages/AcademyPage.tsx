@@ -13,7 +13,7 @@ export default function AcademyPage() {
       </section>
       <section style={{ padding:'72px 0', background:'#fff' }}>
         <div className="container">
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:48 }}>
+          <div className="academy-grid" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:48 }}>
             <div>
               <h2 className="serif" style={{ fontSize:28, color:'var(--teal)', marginBottom:24 }}>Certifications Offered</h2>
               <div style={{ display:'flex', flexDirection:'column', gap:14 }}>
@@ -40,6 +40,11 @@ export default function AcademyPage() {
           </div>
         </div>
       </section>
+      <style>{`
+        @media (max-width: 900px) {
+          .academy-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+        }
+      `}</style>
     </div>
   );
 }

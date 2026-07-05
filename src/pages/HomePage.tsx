@@ -39,9 +39,9 @@ export default function HomePage() {
         <div style={{ position:'absolute', top:'8%', right:'6%', width:400, height:400, borderRadius:'60% 40% 55% 45%/50% 60% 40% 50%', background:'rgba(107,174,151,0.18)', filter:'blur(2px)' }} />
         <div style={{ position:'absolute', bottom:'6%', left:'4%', width:240, height:240, borderRadius:'40% 60% 45% 55%/60% 40% 60% 40%', background:'rgba(232,96,76,0.12)', filter:'blur(1px)' }} />
 
-        <div className="container" style={{ flex:1, display:'flex', alignItems:'center', gap:64, padding:'calc(var(--nav-height) + 60px) 32px 80px' }}>
+        <div className="container hero-flex" style={{ flex:1, display:'flex', alignItems:'center', gap:64, padding:'calc(var(--nav-height) + 60px) 32px 80px' }}>
           {/* Left */}
-          <div style={{ flex:1, minWidth:0 }}>
+          <div className="hero-left" style={{ flex:1, minWidth:0 }}>
             <div style={{ display:'inline-flex', alignItems:'center', gap:8, background:'rgba(107,174,151,0.2)', border:'1px solid rgba(107,174,151,0.4)', borderRadius:100, padding:'6px 16px', marginBottom:28 }}>
               <div style={{ width:6, height:6, borderRadius:'50%', background:'var(--sage)' }} />
               <span style={{ fontSize:11, color:'rgba(255,255,255,0.85)', letterSpacing:'0.06em', textTransform:'uppercase', fontWeight:500 }}>
@@ -172,7 +172,7 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-            <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:14 }}>
+            <div className="feature-grid" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:14 }}>
               {WHY_CHOOSE_US.features.map((f, i) => (
                 <div key={i} className="card">
                   <CheckCircle size={20} color="var(--sage)" style={{ marginBottom:10 }}/>
@@ -276,7 +276,16 @@ export default function HomePage() {
           </div>
         </div>
         <style>{`
-          @media(max-width:900px){ .two-col{grid-template-columns:1fr!important;gap:40px!important;} .hero-right{display:none!important;} .phases-grid{grid-template-columns:1fr!important;} .phase-line{display:none!important;} }
+          @media (max-width: 900px) {
+            .two-col { grid-template-columns: 1fr !important; gap: 40px !important; }
+            .hero-flex { flex-direction: column !important; align-items: stretch !important; text-align: center; }
+            .hero-right { width: 100% !important; margin-top: 32px; }
+            .phases-grid { grid-template-columns: 1fr !important; }
+            .phase-line { display: none !important; }
+          }
+          @media (max-width: 480px) {
+            .feature-grid { grid-template-columns: 1fr !important; }
+          }
         `}</style>
       </section>
     </>

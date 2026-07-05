@@ -70,9 +70,9 @@ export default function AppointmentPage() {
 
       <section style={{ padding: '72px 0', background: 'var(--warm-white)' }}>
         <div className="container" style={{ maxWidth: 680, margin: '0 auto' }}>
-          <div style={{ background: '#fff', borderRadius: 'var(--radius-xl)', padding: '48px', boxShadow: 'var(--shadow-lg)' }}>
+          <div className="appointment-card" style={{ background: '#fff', borderRadius: 'var(--radius-xl)', padding: '48px', boxShadow: 'var(--shadow-lg)' }}>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
+            <div className="field-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
               <div>
                 <label style={labelStyle}>Full Name</label>
                 <input style={inputStyle} placeholder="Your name" value={form.name} onChange={set('name')}
@@ -110,7 +110,7 @@ export default function AppointmentPage() {
               </select>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 24 }}>
+            <div className="field-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 24 }}>
               <div>
                 <label style={labelStyle}>Preferred Time Slot</label>
                 <select style={{ ...inputStyle, background: '#fff', cursor: 'pointer' }} value={form.slot} onChange={set('slot')}>
@@ -148,7 +148,13 @@ export default function AppointmentPage() {
           </div>
         </div>
       </section>
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      <style>{`
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 600px) {
+          .field-row { grid-template-columns: 1fr !important; gap: 12px !important; }
+          .appointment-card { padding: 28px !important; }
+        }
+      `}</style>
     </div>
   );
 }

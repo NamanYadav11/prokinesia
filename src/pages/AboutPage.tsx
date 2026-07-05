@@ -16,7 +16,7 @@ export default function AboutPage() {
       {/* Main */}
       <section style={{ padding: '80px 0', background: '#fff' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 72, alignItems: 'center' }}>
+          <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 72, alignItems: 'center' }}>
             <div>
               <h2 className="serif section-title" style={{ marginBottom: 20 }}>{ABOUT.mainTitle}</h2>
               {ABOUT.description.split('\n\n').map((para, i) => (
@@ -32,7 +32,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div>
-              <img src={ABOUT.aboutImage} alt="About Prokinesia" style={{ width: '100%', borderRadius: 'var(--radius-xl)', objectFit: 'cover', height: 480 }} />
+              <img src={ABOUT.aboutImage} alt="About Prokinesia" className="about-grid-image" style={{ width: '100%', borderRadius: 'var(--radius-xl)', objectFit: 'cover', height: 480 }} />
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function AboutPage() {
       {/* Vision & Mission */}
       <section style={{ padding: '80px 0', background: 'var(--warm-white)' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
+          <div className="vision-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
             {[ABOUT.vision, ABOUT.mission].map((item, i) => (
               <div key={i} className="card" style={{ padding: '36px' }}>
                 <img src={item.image} alt={item.title} style={{ width: 56, height: 56, objectFit: 'contain', marginBottom: 20 }} />
@@ -64,6 +64,14 @@ export default function AboutPage() {
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', marginTop: 4 }}>{ABOUT.founderTitle}</div>
         </div>
       </section>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .about-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .about-grid-image { height: 320px !important; }
+          .vision-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+        }
+      `}</style>
     </div>
   );
 }

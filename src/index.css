@@ -27,6 +27,13 @@
   --nav-height:  72px;
 }
 
+/* ─── Responsive breakpoints (reference only — CSS custom properties
+   cannot be used inside @media conditions) ───
+   900px  primary two-column→one-column collapse, nav→hamburger switch
+   600px  secondary tightening for forms/cards
+   480px  narrow-phone-only collapse for nested grids
+   Keep new @media rules aligned to these three numbers. */
+
 html { scroll-behavior: smooth; }
 
 body {
