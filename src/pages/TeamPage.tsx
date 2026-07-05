@@ -1,5 +1,4 @@
 import React from 'react';
-import { Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { TEAM } from '../data/siteData';
 

@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Play, Star, CheckCircle, Award, Users, Building2, Heart, Zap, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { ArrowRight, Play, Star, CheckCircle, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import { HOME, STATS, WHY_CHOOSE_US, HOW_WE_WORK, TESTIMONIALS, SERVICES, SERVICE_CATEGORIES } from '../data/siteData';
-
-const featureIcons = [Award, Users];
 
 export default function HomePage() {
   const countRefs = useRef<(HTMLSpanElement | null)[]>([]);
